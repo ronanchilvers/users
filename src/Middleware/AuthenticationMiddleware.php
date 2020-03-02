@@ -60,7 +60,7 @@ class AuthenticationMiddleware
     public function __invoke(ServerRequestInterface $request, Response $response, $next)
     {
         if (is_null($request->getAttribute('route'))) {
-            throw new Exception('Request route is null - have you set "determineRouteBeforeAppMiddleware"');
+            throw new Exception('Request route is null - check HTTP methods and "determineRouteBeforeAppMiddleware"');
         }
         $anonymousRoutes = $this->getOption('anonymous_routes', []);
         if (!in_array($request->getAttribute('route')->getName(), $anonymousRoutes)) {
